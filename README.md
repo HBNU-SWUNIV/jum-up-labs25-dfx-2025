@@ -1,4 +1,4 @@
-# Jump-up-Labs-TEMPLATE
+<img width="305" height="135" alt="image" src="https://github.com/user-attachments/assets/10d931fd-ca33-46b9-9349-5d8c913e07a3" /># Jump-up-Labs-TEMPLATE
 # 국립한밭대학교 컴퓨터공학과 DfX팀
 
 **팀 구성**
