@@ -54,21 +54,6 @@
 
 <img width="336" height="280" alt="image" src="https://github.com/user-attachments/assets/94de8df7-6449-4307-b860-4c59aec1647c" />
 
-### 객체 매칭 및 자세 추정
-
-깻잎은 중심 잎(center leaf)을 기준으로 좌우 대칭 구조를 가지며, 이를 고려해 OBB(Oriented Bounding Box) 기반 인식 결과로부터 **개체(entity) 단위의 매칭과 방향 추정 알고리즘**을 적용하였다.
-
-1. 중심 잎의 양쪽 **긴 변(mid-edge)** 중점을 기준으로 주변 수확용 잎의 경계 상자(OBB)까지의 거리를 계산.
-2. 각 중점에서 가장 가까운 수확 잎을 선택하여 **1개의 중심 잎 ↔ 최대 2개의 수확 잎** 관계를 형성.
-3. 중복 매칭 발생 시 더 짧은 거리의 매칭만 유지하여 **정확한 leaf entity 구성**을 보장.
-   
-   <img width="327" height="246" alt="image" src="https://github.com/user-attachments/assets/fdaa40fa-3f85-46c0-b9ac-d75cbe8d168b" />
-
-4. 매칭된 수확 잎 쌍의 OBB에서 **가장 가까운 변의 중점(midpoint)** 을 계산하고, 두 점을 잇는 선분의 **중심(center)** 을 줄기 위치로, 선분의 **기울기(angle)** 을 잎의 방향(orientation)으로 정의.
-5. 이 정보를 로봇 제어부에서 활용하여 **엔드이펙터의 진입 위치 및 각도 보정**을 수행. 
-
-    <img width="320" height="274" alt="image" src="https://github.com/user-attachments/assets/5ae796f6-0d01-43ed-9696-5e55af769624" />
-
 ## Numerical Results
 ### 1) YOLOv11-OBB
 | Metric | Precision | Recall | mAP@0.5 | mAP@0.5:0.95 |
