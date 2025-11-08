@@ -21,14 +21,23 @@
 
 ### 전체 구조 개요
 본 시스템은 비전 인식부, 로봇 제어부, 엔드이펙터 구동부의 세 가지 핵심 모듈로 구성된다.
+    <img width="336" height="212" alt="image" src="https://github.com/user-attachments/assets/1e20aade-883d-441a-96d9-b07de1846599" />
+
 1. 비전 인식부
     - RGB-D 카메라(RealSense L515)를 이용해 깻잎의 컬러 및 깊이 정보를 수집
     - YOLOv11 OBB 모델을 통해 깻잎의 위치 및 회전각 탐지
     - 픽셀 좌표 → 3D 좌표 변환 후 로봇 좌표계 보정
+      
+      <img width="537" height="216" alt="image" src="https://github.com/user-attachments/assets/30ce9480-5a9c-49f7-8887-87045b1fb4a3" />
+
 2. 로봇 제어부
     - Jetson Orin Nano에서 인식 결과를 처리 후 TCP/IP로 로봇 제어 신호 전달
     - Neuromeka Indy7 기반 6자유도 로봇팔 제어
     - 엔드이펙터의 진입, 파지, 절단 궤적 자동 수행
+
+      <img width="249" height="238" alt="image" src="https://github.com/user-attachments/assets/2b955fdf-4802-45d1-b4ec-ca01e7fa904e" />
+
+
 3. 엔드이펙터 구동부
     - 포토센서: 줄기 감지
     - 마이크로 포토센서: 잎자루 감지
@@ -36,7 +45,12 @@
     - OpenCR 보드로 제어 및 신호 통합
     - RS485-TTL 컨버터 적용으로 장거리 통신 안정성 확보
 
-<img width="336" height="212" alt="image" src="https://github.com/user-attachments/assets/1e20aade-883d-441a-96d9-b07de1846599" />
+      <img width="486" height="104" alt="image" src="https://github.com/user-attachments/assets/3157742f-9d6e-487d-9b13-d4a25b510e4a" />
+
+      <img width="292" height="258" alt="image" src="https://github.com/user-attachments/assets/1cd508a5-f0fe-44c0-aad4-5391e4a7b705" />
+
+
+
 
 ### 작동 절차
 깻잎 자동 수확 시스템의 전체 동작 절차는 5단계로 구성되어 있다.
@@ -44,13 +58,13 @@
 1. 목표 잎 탐지 (Target Detection)
     - YOLOv11-OBB로 인식된 깻잎의 3D 좌표를 계산 후 좌하단→우상단 순서로 수확 경로를 설정
 2. 측면 진입 (Lateral Approach)
-    - 생장점을 보호하기 위해 잎보다 약 6cm 낮은 위치에서 접근
+    - 잎보다 약 6cm 낮은 위치에서 접근
 3. 줄기 탐지 및 파지 (Stem Detection & Grasping)
     - 포토센서가 줄기의 통과를 감지하면 집게부가 닫히며 줄기를 안정적으로 파지
 4. 잎자루 감지 및 절단 준비 (Petiole Detection)
-    - 마이크로 포토센서가 잎자루 통과를 감지하면 절단 명령 대기
+    - 마이크로 포토센서가 잎자루 통과를 감지하면 절단 명령
 5. 절단 및 수확 완료 (Cutting & Harvesting)
-    - 와이어 메커니즘이 작동해 절단과 파지를 동시에 수행
+    - 절단과 파지를 동시에 수행
 
 <img width="336" height="280" alt="image" src="https://github.com/user-attachments/assets/94de8df7-6449-4307-b860-4c59aec1647c" />
 
@@ -63,12 +77,11 @@
 - RGB-D 기반 OBB 탐지로 **위치+회전각** 동시 인식  
 
 ### 2) Harvesting Experiments (N=50)
-| 단계 | 설명           | 성공률 |
-|------|----------------|--------|
-| 1    | 위치 이동      | 100%   |
-| 2    | 줄기 파지      | 92%    |
-| 3    | 잎자루 절단    | 89%    |
-| **—**| **최종 성공률**| **82%** |
+|           | Step 1 | Step 2 | Step 3 | Result |
+|-----------|:------:|:------:|:------:|:-----:|
+| Trials    |   50   |   50   |   46   |  50   |
+| Successes |   50   |   46   |   41   |  41   |
+| Performance | 100% |  92%   |  89%   |  82%  |
 
 - 실패 요인: **회전각 추정 미세 오차**, 일부 **기구 간섭**  
 - 개선 방향: 각도 보정 알고리즘 정밀화, 절단부 형상/강성 최적화
