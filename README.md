@@ -2,10 +2,11 @@
 # 국립한밭대학교 XXX학과 XXX팀
 
 **팀 구성**
-- 2019XXXX Name
-- 2020XXXX Name
-- 2019XXXX Name
-- 2020XXXX Name
+- 30251270 유태원
+- 30251268 송찬호
+- 2019XXXX 안다은
+- 2020XXXX 백민우
+- 20202066 박동현
 
 ## Project Background
 - ABCD
