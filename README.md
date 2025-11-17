@@ -46,7 +46,7 @@ Jetson Orin Nano에서 연산 후 Neuromeka Indy7 로봇팔과 OpenCR 제어기�
 
 **5. 절단 및 파지**: 와이어 메커니즘이 작동해 절단과 파지를 동시에 수행
 
-### 3) 엔드이펙터 제작작
+### 3) 엔드이펙터 제작
 
 #### 구조
 
@@ -106,6 +106,8 @@ Jetson Orin Nano에서 연산 후 Neuromeka Indy7 로봇팔과 OpenCR 제어기�
 | Performance | 100% |  92%   |  89%   |  82%  |
 
 ## Conclusion
-- ABCD
 
 ## Project Outcome
+
+<img width="509" height="441" alt="image" src="https://github.com/user-attachments/assets/16bcf9e8-a5fc-4cb5-976a-39c90ab9a604" />
+
