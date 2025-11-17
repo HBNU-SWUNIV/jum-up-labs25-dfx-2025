@@ -97,13 +97,22 @@ Jetson Orin Nano에서 연산 후 Neuromeka Indy7 로봇팔과 OpenCR 제어기�
 |:------:|:--------:|:-----:|:-------:|:------------:|
 | Result | 0.977    | 0.983 | 0.994   | 0.864        |
 
-### Table 2. Experimental results of the perilla harvesting process
+### 수확 동작 검증 실험
+
+세 단계로 50회의 수확 성능 실험을 수행
+순차적으로 모든 단계를 성공한 경우를 최종 성공으로 정의
+
+Step 1. 로봇팔의 목표 위치 이동 단계
+Step 2. 줄기 파지 단계
+Step 3. 잎자루 인식 및 절단 단계
 
 |           | Step 1 | Step 2 | Step 3 | Result |
 |-----------|:------:|:------:|:------:|:-----:|
 | Trials    |   50   |   50   |   46   |  50   |
 | Successes |   50   |   46   |   41   |  41   |
 | Performance | 100% |  92%   |  89%   |  82%  |
+
+<img width="546" height="208" alt="image" src="https://github.com/user-attachments/assets/bc36f6c7-8162-4d0d-827e-a3240d6d9914" />
 
 ## Conclusion
 
