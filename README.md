@@ -111,3 +111,5 @@ Jetson Orin Nano에서 연산 후 Neuromeka Indy7 로봇팔과 OpenCR 제어기�
 
 <img width="509" height="441" alt="image" src="https://github.com/user-attachments/assets/16bcf9e8-a5fc-4cb5-976a-39c90ab9a604" />
 
+
+
