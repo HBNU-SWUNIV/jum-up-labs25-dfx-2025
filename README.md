@@ -34,8 +34,44 @@ Jetson Orin Nano에서 연산 후 Neuromeka Indy7 로봇팔과 OpenCR 제어기�
 5. 절단 및 수확
   - 와이어 메커니즘이 작동해 절단과 파지를 동시에 수행
 
+### 객체 매칭 및 자세 추정
+
+<img width="224" height="168" alt="image" src="https://github.com/user-attachments/assets/becceb42-eb3f-4744-96ec-2365391aef23" />
+
+- 중심 잎의 양쪽 **긴 변(mid-edge)** 중점을 기준으로 주변 수확용 잎의 경계 상자(OBB)까지의 거리를 계산.  
+- 각 중점에서 가장 가까운 수확 잎을 선택하여 **1개의 중심 잎 ↔ 최대 2개의 수확 잎** 관계를 형성.  
+- 중복 매칭 발생 시 더 짧은 거리의 매칭만 유지하여 **정확한 leaf entity 구성**을 보장.
+
+<img width="200" height="171" alt="image" src="https://github.com/user-attachments/assets/f4d58d30-62b4-4ee0-9ba4-3cdae520ce72" />
+
+- 매칭된 수확 잎 쌍의 OBB에서 **가장 가까운 변의 중점(midpoint)** 을 계산하고,  
+  두 점을 잇는 선분의 **중심(center)** 을 줄기 위치로,  
+  선분의 **기울기(angle)** 을 잎의 방향(orientation)으로 정의.  
+- 이 정보를 로봇 제어부에서 활용하여 **엔드이펙터의 진입 위치 및 각도 보정**을 수행.  
+
+### 4 좌표 변환 및 로봇 접근
+
+RGB-D 카메라에서 얻은 픽셀 좌표를 실제 공간상의 3차원 좌표로 변환하여  
+로봇팔이 깻잎의 줄기 위치와 방향에 정밀하게 접근하도록 제어하였다.  
+깊이 정보와 카메라 내부 파라미터를 이용해 좌표를 환산하고,  
+카메라–로봇 간 오프셋과 회전각을 보정해 엔드이펙터의 진입 위치를 계산하였다.  
+
+<img width="265" height="255" alt="image" src="https://github.com/user-attachments/assets/1a44b5b8-aa97-4e32-8b67-eb2fbd425445" />
+
+
 ## Numerical Results
-- ABCD
+### 1) YOLOv11-OBB
+| Metric | Precision | Recall | mAP@0.5 | mAP@0.5:0.95 |
+|:------:|:--------:|:-----:|:-------:|:------------:|
+| Result | 0.977    | 0.983 | 0.994   | 0.864        |
+
+**Table 2. Experimental results of the perilla harvesting process**
+
+|           | Step 1 | Step 2 | Step 3 | Result |
+|-----------|:------:|:------:|:------:|:-----:|
+| Trials    |   50   |   50   |   46   |  50   |
+| Successes |   50   |   46   |   41   |  41   |
+| Performance | 100% |  92%   |  89%   |  82%  |
 
 ## Conclusion
 - ABCD
